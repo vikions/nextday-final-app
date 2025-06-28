@@ -4,14 +4,8 @@ import App from "./app";
 const appUrl = process.env.NEXT_PUBLIC_APP_URL;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const frameTags = {
-    "fc:frame": "vNext",
-    "fc:frame:image": `${appUrl}/image.png`,
-    "fc:frame:post_url": `${appUrl}/api/vote`,
-    "fc:frame:button:1": "Higher ⬆️",
-    "fc:frame:button:2": "Lower ⬇️",
-  };
-
+  // Теперь здесь только Open Graph теги для красивых превью
+  // и ОДИН специальный fc:frame:frame_url
   return {
     title: "NEXTDAY: BTC Price Prediction",
     openGraph: {
@@ -19,9 +13,10 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [`${appUrl}/image.png`],
     },
     other: {
-      // Это правильный способ для Next.js сгенерировать 'property' теги.
-      // Мы передаем объект с нашими тегами в 'other'.
-      ...frameTags,
+      // Этот тег говорит клиенту Farcaster: "иди за фреймом сюда"
+      "fc:frame": "vNext",
+      "fc:frame:image": `${appUrl}/image.png`, // Fallback-изображение
+      "fc:frame:post_url": `${appUrl}/api/frame`, // Адрес, куда Farcaster пойдет за кодом фрейма
     },
   };
 }
