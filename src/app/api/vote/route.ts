@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL;
 
 // Экран "Спасибо за голос"
-export async function POST(req: NextRequest): Promise<Response> {
+export async function POST(_req: NextRequest): Promise<Response> {
   return new NextResponse(`
     <!DOCTYPE html>
     <html>
