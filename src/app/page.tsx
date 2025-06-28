@@ -10,13 +10,11 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [`${appUrl}/image.png`],
     },
     other: {
-      // Это правильное место для fc:frame тегов.
-      // Next.js автоматически сгенерирует их с атрибутом 'property'.
       "fc:frame": "vNext",
       "fc:frame:image": `${appUrl}/image.png`,
-      "fc:frame:post_url": `${appUrl}/api/vote`,
-      "fc:frame:button:1": "Higher ⬆️",
-      "fc:frame:button:2": "Lower ⬇️",
+      // Кнопка теперь ведет на новый адрес /api/show-price
+      "fc:frame:post_url": `${appUrl}/api/show-price`, 
+      "fc:frame:button:1": "▶️ Start Prediction",
     },
   };
 }
