@@ -1,4 +1,3 @@
-import { getFrameMetadata } from 'frog/next';
 import type { Metadata } from 'next';
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL;
