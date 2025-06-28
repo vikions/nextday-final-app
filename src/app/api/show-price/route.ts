@@ -20,6 +20,12 @@ async function getBTCPrice() {
 
 // Обработчик для /api/show-price
 export async function POST(req: NextRequest): Promise<Response> {
+  // Теперь мы ИСПОЛЬЗУЕМ req, чтобы прочитать данные из запроса
+  const body = await req.json();
+
+  // Это для отладки - вы сможете видеть в логах Vercel, кто нажал на кнопку
+  console.log("Received data from Farcaster:", body);
+
   // Получаем цену BTC
   const btcPrice = await getBTCPrice();
 
@@ -41,6 +47,7 @@ export async function POST(req: NextRequest): Promise<Response> {
         <title>Predict the Price</title>
         <meta property="fc:frame" content="vNext" />
         <meta property="fc:frame:image" content="${dataUri}" />
+        <meta property="fc:frame:image:aspect_ratio" content="1:1" />
         <meta property="fc:frame:button:1" content="Higher ⬆️" />
         <meta property="fc:frame:button:2" content="Lower ⬇️" />
         <meta property="fc:frame:button:3" content="Same ➖" />
